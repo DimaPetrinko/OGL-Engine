@@ -14,9 +14,17 @@ GfxFramework::~GfxFramework()
 {
 }
 
-bool GfxFramework::InitWindow(const char *_title, int _width, int _height) 
+int GfxFramework::InitWindow(const char *_title, int _width, int _height, bool _fullscreen) 
 {
-	glutInitWindowSize(_width, _height);
-	glutInitWindowPosition(100, -100);
+
+	if (_fullscreen)
+	{ 
+		glutFullScreen();
+	}
+	else
+	{
+		glutInitWindowSize(_width, _height);
+		glutInitWindowPosition(100, -100);
+	}
 	return glutCreateWindow(_title);
 }

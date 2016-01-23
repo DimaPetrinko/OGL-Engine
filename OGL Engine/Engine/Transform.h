@@ -16,6 +16,9 @@ public:
 		Vector2();
 		Vector2(float _x, float _y);
 
+		static Vector2 up;
+		static Vector2 right;
+
 		static float GetMagnitude(Vector2 vector);
 
 		float GetMagnitude();
@@ -32,6 +35,10 @@ public:
 		Vector3();
 		Vector3(float _x, float _y, float _z);
 
+		static Vector3 up;
+		static Vector3 right;
+		static Vector3 forward;
+
 		static float GetMagnitude(Vector3 vector);
 
 		float GetMagnitude();
@@ -40,6 +47,10 @@ public:
 
 		Vector3 Normilize();
 	};
+
+	static Vector3 up;
+	static Vector3 right;
+	static Vector3 forward;
 
 	Vector3 position;
 	Vector3 rotation;

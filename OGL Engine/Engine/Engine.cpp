@@ -86,10 +86,11 @@ GameObject go = GameObject();
 
 int main()
 {
-	std::cout << ((Transform&)go.GetComponent("Transfrom")).position.x << std::endl;
+	//Transform *t = (Transform*)go.GetComponent("Transform");
+	//std::cout << t->name << std::endl;
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	Window window = Window("Engine", 1280, 720);
+	Window window = Window("Engine", 1280, 720, false);
 	/*glutInitWindowSize(1346, 680);
 	glutInitWindowPosition(10, 0);
 	glutCreateWindow("3DGL");*/

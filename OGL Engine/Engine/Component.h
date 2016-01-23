@@ -18,6 +18,6 @@ private:
 public:
 	Component();
 	Component(const GameObject _gameobject);
-	~Component();
+	virtual ~Component();
 };
 

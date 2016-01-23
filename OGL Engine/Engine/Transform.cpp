@@ -1,11 +1,16 @@
 #include "stdafx.h"
 #include "Transform.h"
-//#include "GameObject.h"
+#include <iostream>
+#include <time.h>
 
-//Transform-----------------------------------------------------------------------------------
+//Vector2-----------------------------------------------------------------------------------
 Transform::Vector2::Vector2() { x = 0.0f; y = 0.0f; }
 
 Transform::Vector2::Vector2(float _x, float _y) { x = _x; y = _y; }
+
+Transform::Vector2 Transform::Vector2::up = Transform::Vector2(0, 1); //worldspace
+
+Transform::Vector2 Transform::Vector2::right = Transform::Vector2(1, 0); //worldspace
 
 float Transform::Vector2::GetMagnitude(Vector2 vector) // returns magnitude of given vector
 {
@@ -35,6 +40,12 @@ Transform::Vector2 Transform::Vector2::Normilize()
 Transform::Vector3::Vector3() { x = 0.0f; y = 0.0f; z = 0.0; }
 
 Transform::Vector3::Vector3(float _x, float _y, float _z) { x = _x; y = _y; z = _z; }
+
+Transform::Vector3 Transform::Vector3::up = Transform::Vector3(0, 1, 0); //worldspace
+
+Transform::Vector3 Transform::Vector3::right = Transform::Vector3(1, 0, 0); //worldspace
+
+Transform::Vector3 Transform::Vector3::forward = Transform::Vector3(0, 0, 1); //worldspace
 
 float Transform::Vector3::GetMagnitude(Vector3 vector) // returns magnitude of given vector
 {
@@ -79,5 +90,12 @@ Transform::Transform(const GameObject _gameobject, Vector3 _position, Vector3 _r
 
 Transform::~Transform()
 {
+	std::cout << "I've been destroyed. My name is " << this->name << std::endl;
 }
+
+Transform::Vector3 Transform::up = Transform::Vector3(0, 1, 0);
+
+Transform::Vector3 Transform::right = Transform::Vector3(1, 0, 0);
+
+Transform::Vector3 Transform::forward = Transform::Vector3(0, 0, 1);
 //-----------------------------------------------------------------------------------------

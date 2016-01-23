@@ -2,6 +2,7 @@
 #define GAMEOBJECT_H
 
 #include <vector>
+#include <algorithm>
 #include <memory>
 #include "Component.h"
 //#include "Transform.h"
@@ -15,7 +16,8 @@ public:
 	const char *name;
 	const char *tag;
 	bool enabled;
-	std::vector<Component> components;
+	std::vector<Component*> components;
+	Transform *transform;
 	//const Transform &transform;
 
 private:
@@ -25,7 +27,7 @@ public:
 	GameObject();
 	~GameObject();
 
-	void AddComponent(Component &_component);
-	Component GetComponent(const char *_name);
+	void AddComponent(Component *_component);
+	Component *GetComponent(const char *_name);
 };
 

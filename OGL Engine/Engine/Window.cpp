@@ -9,15 +9,16 @@ Window::Window()
 	title = defaultTitle;
 	width = 600;
 	height = 400;
-	GfxFramework::InitWindow(title, width, height);
+	GfxFramework::InitWindow(title, width, height, false);
 }
 
-Window::Window(const char *_title, int _width, int _height) 
+Window::Window(const char *_title, int _width, int _height, bool _fullscreen)
 {
 	title = _title;
 	width = _width;
 	height = _height;
-	GfxFramework::InitWindow(title, width, height);
+	fullscreen = _fullscreen;
+	GfxFramework::InitWindow(title, width, height, _fullscreen);
 }
 
 Window::~Window()
