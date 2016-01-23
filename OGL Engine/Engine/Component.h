@@ -7,9 +7,9 @@ class GameObject;
 
 class Component
 {
-public:
-	
+public:	
 	const char *name;
+	bool enabled;
 	const GameObject &gameObject;
 
 private:

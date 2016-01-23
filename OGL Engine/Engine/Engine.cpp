@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "Component.h"
+#include "Transform.h"
 #include "Window.h"
 
 #pragma comment(lib,"DevIL.lib")
@@ -85,7 +86,7 @@ GameObject go = GameObject();
 
 int main()
 {
-	std::cout << go.name << std::endl;
+	std::cout << ((Transform&)go.GetComponent("Transfrom")).position.x << std::endl;
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	Window window = Window("Engine", 1280, 720);
