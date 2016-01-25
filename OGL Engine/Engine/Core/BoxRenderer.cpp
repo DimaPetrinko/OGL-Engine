@@ -22,8 +22,11 @@ BoxRenderer::~BoxRenderer()
 {
 }
 
-void BoxRenderer::Render() 
+void BoxRenderer::Render()
 {
-	Renderer::Render();
-	GfxFramework::DrawCube(color, gameObject->transform->position, gameObject->transform->rotation, gameObject->transform->scale);
+	if (gameObject->enabled && enabled)
+	{
+		Renderer::Render();
+		GfxFramework::DrawCube(color, gameObject->transform->position, gameObject->transform->rotation, gameObject->transform->scale);
+	}
 }

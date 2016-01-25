@@ -12,15 +12,20 @@ GameObject::GameObject()// : transform(Transform(this,Transform::Vector3(), Tran
 	name = defaultName;
 	enabled = true;
 	transform = new Transform(this, Transform::Vector3(), Transform::Vector3(), Transform::Vector3(1, 1, 1));
-	//transform.gameObject = this;
-	AddComponent(/*&Transform(*this, Transform::Vector3(), Transform::Vector3(), Transform::Vector3())*/transform);
-	//transform = (Transform*)components[0];
+	AddComponent(transform);
 }
 
 GameObject::GameObject(const char *_name) : GameObject::GameObject()
 {
 	name = _name;
 }
+
+//GameObject::GameObject(const char *_name, Transform::Vector3 _position, Transform::Vector3 _rotation, Transform::Vector3 _scale) : GameObject(_name)
+//{
+//	transform->position = _position;
+//	transform->rotation = _rotation;
+//	transform->scale = _scale;
+//}
 
 GameObject::~GameObject()
 {
@@ -29,9 +34,10 @@ GameObject::~GameObject()
 	std::cout << "I've been destroyed. My name is " << this->name << std::endl;
 }
 
-void GameObject::SetRenderer(Renderer* _renderer)
+void GameObject::SetRenderer(Renderer *_renderer)
 {
 	renderer = _renderer;
+	AddComponent((Component*)renderer);
 }
 
 void GameObject::AddComponent(Component *_component)

@@ -18,18 +18,17 @@ public:
 	const char *name;
 	const char *tag;
 	bool enabled;
-	std::vector<Component*> components;
 	Transform *transform;
 	Renderer *renderer;
 
-	//const Transform &transform;
-
 private:
 	static const char *defaultName;
+	std::vector<Component*> components;
 
 public:
 	GameObject();
 	GameObject(const char *_name);
+	//GameObject(const char *_name, Transform::Vector3 _position, Transform::Vector3 _rotation, Transform::Vector3 _scale);
 	~GameObject();
 
 	void SetRenderer(Renderer* _renderer);

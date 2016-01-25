@@ -59,5 +59,7 @@ public:
 	Transform();
 	Transform(const GameObject *_gameObject, Vector3 _position, Vector3 _rotation, Vector3 _scale);
 	~Transform();
+
+	void Translate(Vector3 _translation);
 };
 

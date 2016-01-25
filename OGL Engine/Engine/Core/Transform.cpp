@@ -98,4 +98,11 @@ Transform::Vector3 Transform::up = Transform::Vector3(0, 1, 0);
 Transform::Vector3 Transform::right = Transform::Vector3(1, 0, 0);
 
 Transform::Vector3 Transform::forward = Transform::Vector3(0, 0, 1);
+
+void Transform::Translate(Transform::Vector3 _translation)
+{
+	position.x += _translation.x;
+	position.y += _translation.y;
+	position.z += _translation.z;
+}
 //-----------------------------------------------------------------------------------------

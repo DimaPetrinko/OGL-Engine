@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "Transform.h"
 
+class Component;
+
 class Renderer : public Component
 {
 public:
