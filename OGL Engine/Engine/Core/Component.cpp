@@ -1,17 +1,19 @@
 #include "stdafx.h"
-#include "Component.h"
+#include "Headers\Component.h"
 #include <iostream>
 
 const char *Component::defaultName = "NewComponent";
 
-Component::Component() : gameObject(GameObject())
+Component::Component()
 {
 	name = defaultName;
 	enabled = true;
+	gameObject = &GameObject();
 }
 
-Component::Component(GameObject _gameObject) : gameObject(_gameObject)
+Component::Component(const GameObject* _gameObject)
 {
+	gameObject = _gameObject;
 	name = defaultName;
 	enabled = true;
 }

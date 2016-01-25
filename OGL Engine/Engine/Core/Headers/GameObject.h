@@ -5,10 +5,12 @@
 #include <algorithm>
 #include <memory>
 #include "Component.h"
+//#include "Renderer.h"
 //#include "Transform.h"
 
 class Component;
 class Transform;
+class Renderer;
 
 class GameObject
 {
@@ -18,6 +20,8 @@ public:
 	bool enabled;
 	std::vector<Component*> components;
 	Transform *transform;
+	Renderer *renderer;
+
 	//const Transform &transform;
 
 private:
@@ -25,8 +29,10 @@ private:
 
 public:
 	GameObject();
+	GameObject(const char *_name);
 	~GameObject();
 
+	void SetRenderer(Renderer* _renderer);
 	void AddComponent(Component *_component);
 	Component *GetComponent(const char *_name);
 };

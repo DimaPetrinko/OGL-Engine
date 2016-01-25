@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Transform.h"
+#include "Headers\Transform.h"
 #include <iostream>
 #include <time.h>
 
@@ -80,7 +80,7 @@ Transform::Transform()
 	scale = Vector3();
 }
 
-Transform::Transform(const GameObject _gameobject, Vector3 _position, Vector3 _rotation, Vector3 _scale) : Component(_gameobject)
+Transform::Transform(const GameObject *_gameobject, Vector3 _position, Vector3 _rotation, Vector3 _scale) : Component(_gameobject)
 {
 	name = "Transform";
 	position = _position;

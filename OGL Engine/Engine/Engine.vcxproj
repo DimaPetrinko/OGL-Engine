@@ -145,20 +145,24 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Headers\BoxRenderer.h" />
     <ClInclude Include="Core\Headers\Component.h" />
     <ClInclude Include="Core\Headers\GameObject.h" />
     <ClInclude Include="Core\Headers\GfxFramework.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Core\Headers\Renderer.h" />
+    <ClInclude Include="Core\stdafx.h" />
+    <ClInclude Include="Core\targetver.h" />
     <ClInclude Include="Core\Headers\Transform.h" />
     <ClInclude Include="Core\Headers\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\BoxRenderer.cpp" />
     <ClCompile Include="Core\Component.cpp" />
     <ClCompile Include="Core\Engine.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\GfxFramework.cpp" />
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="Core\Renderer.cpp" />
+    <ClCompile Include="Core\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

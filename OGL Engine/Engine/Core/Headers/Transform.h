@@ -57,7 +57,7 @@ public:
 	Vector3 scale;
 
 	Transform();
-	Transform(const GameObject _gameObject, Vector3 _position, Vector3 _rotation, Vector3 _scale);
+	Transform(const GameObject *_gameObject, Vector3 _position, Vector3 _rotation, Vector3 _scale);
 	~Transform();
 };
 

@@ -10,14 +10,14 @@ class Component
 public:	
 	const char *name;
 	bool enabled;
-	const GameObject &gameObject;
+	const GameObject *gameObject;
 
 private:
 	static const char *defaultName;
 
 public:
 	Component();
-	Component(const GameObject _gameobject);
+	Component(const GameObject *_gameobject);
 	virtual ~Component();
 };
 
