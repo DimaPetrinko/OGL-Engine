@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <Windows.h>
 #include <GL\glut.h>
+#include <iostream>
 
 #include "Headers\GfxFramework.h"
 
@@ -24,41 +25,33 @@ int GfxFramework::InitWindow(const char *_title, int _width, int _height, bool _
 	else
 	{
 		glutInitWindowSize(_width, _height);
-		glutInitWindowPosition(100, -100);
+		glutInitWindowPosition(0, 0);
 	}
+
+	std::cout << "Initialized new window: " << _title << " " << _width << "x" << _height << " fullscreen " << _fullscreen << std::endl;
 	return glutCreateWindow(_title);
 }
 
 void GfxFramework::DrawCube(Transform::Vector3 color, Transform::Vector3 position, Transform::Vector3 rotation, Transform::Vector3 scale)
 {
-	//Translation
+	glPushMatrix();
+
+	//Translate
 	glTranslatef(position.x, position.y, position.z);
 
-	//Rotation
+	//Rotate
 	glRotatef(rotation.x, 1, 0, 0);
 	glRotatef(rotation.y, 0, 1, 0);
 	glRotatef(rotation.z, 0, 0, 1);
 
-	//Scaling
+	//Scale
 	glScalef(scale.x, scale.y, scale.z);
 
-	//Coloring
+	//Color
 	glColor3f(color.x, color.y, color.z);
 
-	//Drawing
+	//Draw
 	glutSolidCube(1);
-	
-	//Unoloring
-	glColor3f(1,1,1);
 
-	//Unscaling
-	glScalef(scale.x, scale.y, scale.z);
-
-	//Reverse rotation
-	glRotatef(-rotation.x, 1, 0, 0);
-	glRotatef(-rotation.y, 0, 1, 0);
-	glRotatef(-rotation.z, 0, 0, 1);
-
-	//Reverse translation
-	glTranslatef(-position.x, -position.y, -position.z);
+	glPopMatrix();
 }

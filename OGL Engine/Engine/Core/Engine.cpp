@@ -26,8 +26,9 @@ void Reshape(int w, int h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45, ratio, 0.1, 100);
-	gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0);
-	glMatrixMode(GL_MODELVIEW);
+	glTranslated(0, 0, -10);
+	//gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0);
+	glMatrixMode(GL_MODELVIEW);	
 }
 
 //test
@@ -39,20 +40,16 @@ void Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0, 0, 0, 0);
-
-	glPushMatrix();
-
+	
 	go.renderer->Render();
 	newBR.Render();
-
-	glPopMatrix();
 
 	glutSwapBuffers();
 }
 
 void Idle()
 {
-	go.transform->Translate(Transform::Vector3(.01, .01, 0));
+	go.transform->Rotate(Transform::Vector3(0,1,1));
 	glutPostRedisplay();
 }
 
@@ -83,7 +80,7 @@ void Keyboard(unsigned char key, int x, int y)
 
 int main()
 {	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	Window window = Window("Engine", 1280, 720, false);
+	Window window = Window("Engine", 1920, 1080, false);
 	/*glutInitWindowSize(1346, 680);
 	glutInitWindowPosition(10, 0);
 	glutCreateWindow("3DGL");*/
@@ -98,6 +95,8 @@ int main()
 	newBR = *newBRp;
 	delete newBRp;
 	newBR.gameObject->transform->position = Transform::Vector3(2, 1, 1);
+	newBR.gameObject->transform->rotation = Transform::Vector3(0, 0, 30);
+	newBR.gameObject->transform->scale = Transform::Vector3(2, 2, 2);
 	//----
 
 	glutDisplayFunc(Display);

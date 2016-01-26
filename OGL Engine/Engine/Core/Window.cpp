@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Headers\Window.h"
 #include "Headers\GfxFramework.h"
+#include <iostream>
 
 const char *Window::defaultTitle = "NewWindow";;
 

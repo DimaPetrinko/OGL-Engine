@@ -90,7 +90,6 @@ Transform::Transform(const GameObject *_gameobject, Vector3 _position, Vector3 _
 
 Transform::~Transform()
 {
-	std::cout << "I've been destroyed. My name is " << this->name << std::endl;
 }
 
 Transform::Vector3 Transform::up = Transform::Vector3(0, 1, 0);
@@ -104,5 +103,12 @@ void Transform::Translate(Transform::Vector3 _translation)
 	position.x += _translation.x;
 	position.y += _translation.y;
 	position.z += _translation.z;
+}
+
+void Transform::Rotate(Transform::Vector3 _rotation)
+{
+	rotation.x += _rotation.x;
+	rotation.y += _rotation.y;
+	rotation.z += _rotation.z;
 }
 //-----------------------------------------------------------------------------------------

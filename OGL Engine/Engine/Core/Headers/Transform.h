@@ -61,5 +61,7 @@ public:
 	~Transform();
 
 	void Translate(Vector3 _translation);
+
+	void Rotate(Vector3 _rotation);
 };
 

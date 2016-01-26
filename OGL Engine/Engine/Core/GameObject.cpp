@@ -31,7 +31,6 @@ GameObject::~GameObject()
 {
 	if (transform != nullptr) { delete transform; }
 	//if (renderer != nullptr) { delete renderer; }
-	std::cout << "I've been destroyed. My name is " << this->name << std::endl;
 }
 
 void GameObject::SetRenderer(Renderer *_renderer)

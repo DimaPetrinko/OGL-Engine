@@ -20,5 +20,4 @@ Component::Component(const GameObject* _gameObject)
 
 Component::~Component()
 {
-	std::cout << "I've been destroyed. My name is " << this->name << std::endl;
 }
