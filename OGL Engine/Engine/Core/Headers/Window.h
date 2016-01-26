@@ -1,16 +1,17 @@
 #pragma once
+#include "Maths.h"
+
 class Window
 {
 public:
 	static const char *defaultTitle;
 	const char *title;
-	int width;
-	int height;
+	Maths::Vector2 resolution;
 	bool fullscreen;
 
 public:
 	Window();
-	Window(const char *_title, int _width, int _height, bool _fullscreen);
+	Window(const char *_title, Maths::Vector2 _resolution, bool _fullscreen);
 	~Window();
 };
 

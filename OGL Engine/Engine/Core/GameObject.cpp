@@ -11,7 +11,7 @@ GameObject::GameObject()// : transform(Transform(this,Transform::Vector3(), Tran
 {
 	name = defaultName;
 	enabled = true;
-	transform = new Transform(this, Transform::Vector3(), Transform::Vector3(), Transform::Vector3(1, 1, 1));
+	transform = new Transform(this, Maths::Vector3(), Maths::Vector3(), Maths::Vector3(1, 1, 1));
 	AddComponent(transform);
 }
 

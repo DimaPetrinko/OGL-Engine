@@ -7,7 +7,7 @@ class Component;
 class Renderer : public Component
 {
 public:
-	Transform::Vector3 color;
+	Maths::Vector3 color;
 
 public:
 	Renderer();

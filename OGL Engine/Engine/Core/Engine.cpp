@@ -49,7 +49,7 @@ void Display()
 
 void Idle()
 {
-	go.transform->Rotate(Transform::Vector3(0,1,1));
+	go.transform->Rotate(Maths::Vector3(0,1,1));
 	glutPostRedisplay();
 }
 
@@ -79,24 +79,26 @@ void Keyboard(unsigned char key, int x, int y)
 
 
 int main()
-{	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	Window window = Window("Engine", 1920, 1080, false);
-	/*glutInitWindowSize(1346, 680);
-	glutInitWindowPosition(10, 0);
-	glutCreateWindow("3DGL");*/
+{
+	Window window = Window("Engine", Maths::Vector2(1920, 1080), false);
 	glutIdleFunc(Idle);
 	//DevILInit();
 
 	//test
-	go.SetRenderer(new BoxRenderer(&go, Transform::Vector3(2, 0.3, 0.6)));
-	anotherGo.SetRenderer(new BoxRenderer(&anotherGo, Transform::Vector3(0, 0.3, 0.8)));
+	go.SetRenderer(new BoxRenderer(&go, Maths::Vector3(2, 0.3, 0.6)));
+	anotherGo.SetRenderer(new BoxRenderer(&anotherGo, Maths::Vector3(0, 0.3, 0.8)));
 	BoxRenderer *newBRp = (BoxRenderer*)anotherGo.GetComponent("BoxRenderer");
 
 	newBR = *newBRp;
 	delete newBRp;
-	newBR.gameObject->transform->position = Transform::Vector3(2, 1, 1);
-	newBR.gameObject->transform->rotation = Transform::Vector3(0, 0, 30);
-	newBR.gameObject->transform->scale = Transform::Vector3(2, 2, 2);
+	newBR.gameObject->transform->position = Maths::Vector3(2, 1, 1);
+	newBR.gameObject->transform->rotation = Maths::Vector3(0, 0, 30);
+	newBR.gameObject->transform->scale = Maths::Vector3(2, 2, 2);
+
+	Maths::Matrix3 mat1 = Maths::Matrix3();
+	Maths::Matrix3 mat2 = Maths::Matrix3();
+	Maths::Matrix3 mat3 = mat1 * mat2;
+
 	//----
 
 	glutDisplayFunc(Display);

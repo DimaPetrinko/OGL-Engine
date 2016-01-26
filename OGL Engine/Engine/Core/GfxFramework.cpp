@@ -15,24 +15,24 @@ GfxFramework::~GfxFramework()
 {
 }
 
-int GfxFramework::InitWindow(const char *_title, int _width, int _height, bool _fullscreen) 
+int GfxFramework::InitWindow(const char *_title, Maths::Vector2 _resolution, bool _fullscreen)
 {
-
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	if (_fullscreen)
 	{ 
 		glutFullScreen();
 	}
 	else
 	{
-		glutInitWindowSize(_width, _height);
+		glutInitWindowSize((int)_resolution.x, (int)_resolution.y);
 		glutInitWindowPosition(0, 0);
 	}
 
-	std::cout << "Initialized new window: " << _title << " " << _width << "x" << _height << " fullscreen " << _fullscreen << std::endl;
+	std::cout << "Initialized new window: " << _title << " " << _resolution.x << "x" << _resolution.y << " fullscreen " << _fullscreen << std::endl;
 	return glutCreateWindow(_title);
 }
 
-void GfxFramework::DrawCube(Transform::Vector3 color, Transform::Vector3 position, Transform::Vector3 rotation, Transform::Vector3 scale)
+void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths::Vector3 rotation, Maths::Vector3 scale)
 {
 	glPushMatrix();
 

@@ -7,7 +7,7 @@ class BoxRenderer :
 public:
 	BoxRenderer();
 	BoxRenderer(GameObject *_gameObject);
-	BoxRenderer(GameObject *_gameObject, Transform::Vector3 _color);
+	BoxRenderer(GameObject *_gameObject, Maths::Vector3 _color);
 	~BoxRenderer();
 
 	void Render() override;

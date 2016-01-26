@@ -13,7 +13,7 @@ BoxRenderer::BoxRenderer(GameObject *_gameObject) : Renderer(_gameObject)
 	name = "BoxRenderer";
 }
 
-BoxRenderer::BoxRenderer(GameObject *_gameObject, Transform::Vector3 _color) : BoxRenderer::BoxRenderer(_gameObject)
+BoxRenderer::BoxRenderer(GameObject *_gameObject, Maths::Vector3 _color) : BoxRenderer::BoxRenderer(_gameObject)
 {
 	color = _color;
 }

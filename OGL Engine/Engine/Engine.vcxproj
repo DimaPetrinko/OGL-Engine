@@ -154,6 +154,7 @@
     <ClInclude Include="Core\targetver.h" />
     <ClInclude Include="Core\Headers\Transform.h" />
     <ClInclude Include="Core\Headers\Window.h" />
+    <ClInclude Include="Core\Headers\Maths.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\BoxRenderer.cpp" />
@@ -170,6 +171,7 @@
     </ClCompile>
     <ClCompile Include="Core\Transform.cpp" />
     <ClCompile Include="Core\Window.cpp" />
+    <ClCompile Include="Core\Maths.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,18 +8,16 @@ const char *Window::defaultTitle = "NewWindow";;
 Window::Window()
 {
 	title = defaultTitle;
-	width = 600;
-	height = 400;
-	GfxFramework::InitWindow(title, width, height, false);
+	resolution = Maths::Vector2(600, 400);
+	GfxFramework::InitWindow(title, resolution, false);
 }
 
-Window::Window(const char *_title, int _width, int _height, bool _fullscreen)
+Window::Window(const char *_title, Maths::Vector2 _resolution, bool _fullscreen)
 {
 	title = _title;
-	width = _width;
-	height = _height;
+	resolution = _resolution;
 	fullscreen = _fullscreen;
-	GfxFramework::InitWindow(title, width, height, _fullscreen);
+	GfxFramework::InitWindow(title, _resolution, _fullscreen);
 }
 
 Window::~Window()
