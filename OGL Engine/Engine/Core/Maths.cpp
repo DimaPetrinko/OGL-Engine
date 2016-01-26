@@ -72,7 +72,7 @@ Maths::Vector3 Maths::Vector3::Normilize()
 //-----------------------------------------------------------------------------------------
 
 //Matrix3----------------------------------------------------------------------------------
-Maths::Matrix3::Matrix3(const float _arr[3][3])
+Maths::Matrix3::Matrix3(const float *_arr[3][3])
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -85,7 +85,7 @@ Maths::Matrix3::Matrix3(const float _arr[3][3])
 
 Maths::Matrix3::Matrix3()
 {
-	float _arr[3][3] = 
+	float *_arr[3][3] = 
 	{
 		{0,0,0},
 		{0,0,0},

@@ -46,7 +46,7 @@ public:
 		float matrixArr[3][3];
 
 		Matrix3();
-		Matrix3(const float _arr[3][3]);
+		Matrix3(const float *_arr[3][3]);
 		Matrix3 operator* (const Maths::Matrix3 &A);
 	};
 
