@@ -65,3 +65,27 @@ void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths
 
 	glPopMatrix();
 }
+
+void GfxFramework::DrawSphere(Maths::Vector3 color, Maths::Vector3 position, Maths::Quaternion rotation, Maths::Vector3 scale)
+{
+	glPushMatrix();
+
+	//Translate
+	glTranslatef(position.x, position.y, position.z);
+
+	//Rotate
+	Maths::Quaternion *q = Maths::Quaternion::ToEuler(rotation);
+	glRotatef(q->w, q->axis.x, q->axis.y, q->axis.z);
+	delete(q);
+
+	//Scale
+	glScalef(scale.x, scale.y, scale.z);
+
+	//Color
+	glColor3f(color.x, color.y, color.z);
+
+	//Draw
+	glutSolidSphere(0.5, scale.x * 10, scale.y * 10);
+
+	glPopMatrix();
+}

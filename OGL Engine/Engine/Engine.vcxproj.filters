@@ -48,6 +48,9 @@
     <ClInclude Include="Core\Headers\Maths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Headers\SphereRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Component.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\Maths.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SphereRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

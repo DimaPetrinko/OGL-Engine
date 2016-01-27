@@ -155,6 +155,7 @@
     <ClInclude Include="Core\Headers\Transform.h" />
     <ClInclude Include="Core\Headers\Window.h" />
     <ClInclude Include="Core\Headers\Maths.h" />
+    <ClInclude Include="Core\Headers\SphereRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\BoxRenderer.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Core\Transform.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Core\Maths.cpp" />
+    <ClCompile Include="Core\SphereRenderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

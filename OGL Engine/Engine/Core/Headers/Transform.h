@@ -10,10 +10,6 @@ class GameObject;
 class Transform : public Component
 {
 public:
-	Maths::Vector3 up; //self
-	Maths::Vector3 right; //self
-	Maths::Vector3 forward; //self
-
 	Maths::Vector3 position;
 	Maths::Quaternion rotation;
 	Maths::Vector3 scale;
@@ -25,5 +21,9 @@ public:
 	void Translate(Maths::Vector3 _translation);
 
 	void Rotate(Maths::Quaternion _rotation);
+
+	Maths::Vector3 Up();
+	Maths::Vector3 Right();
+	Maths::Vector3 Forward();
 };
 

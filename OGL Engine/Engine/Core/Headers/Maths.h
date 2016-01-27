@@ -65,6 +65,7 @@ public:
 		Quaternion(const Vector3 &_axis, float _angle);
 
 		Quaternion operator*(const Quaternion& B) const;
+		Vector3 operator*(const Vector3 &_v) const;
 
 		void ToQuaternion(const Vector3 &_axis, float _angle);
 		static Quaternion *ToEuler(const Quaternion &_q);

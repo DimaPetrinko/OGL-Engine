@@ -123,18 +123,23 @@ Maths::Quaternion Maths::Quaternion::operator*(const Maths::Quaternion& B) const
 	return r;
 }
 
+Maths::Vector3 Maths::Quaternion::operator*(const Maths::Vector3 &_v) const
+{
+	Vector3 vcV = axis.Cross(_v);
+	return _v + vcV * (2 * w) + axis.Cross(vcV) * 2;
+}
+
 void Maths::Quaternion::ToQuaternion(const Maths::Vector3 &_axis, float _angle)
 {
 	w = std::cos(_angle * DEG_TO_RAD / 2);
-	axis.x = std::sin(_angle * DEG_TO_RAD / 2)* _axis.x;
-	axis.y = std::sin(_angle * DEG_TO_RAD / 2)* _axis.y;
-	axis.z = std::sin(_angle * DEG_TO_RAD / 2)* _axis.z;
+	axis.x = std::sin(_angle * DEG_TO_RAD / 2) * _axis.x;
+	axis.y = std::sin(_angle * DEG_TO_RAD / 2) * _axis.y;
+	axis.z = std::sin(_angle * DEG_TO_RAD / 2) * _axis.z;
 }
 
 Maths::Quaternion *Maths::Quaternion::ToEuler(const Maths::Quaternion &_q)
 {
 	Quaternion* _qp = new Quaternion();
-	float _wOld = _q.w;
 	_qp->w = 2 * std::acos(_q.w) * RAD_TO_DEG;
 	if (_q.w <= 1 && _q.w >= -1)
 	{

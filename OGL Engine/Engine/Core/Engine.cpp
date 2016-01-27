@@ -14,6 +14,7 @@
 #include "Headers\Transform.h"
 #include "Headers\Window.h"
 #include "Headers\BoxRenderer.h"
+#include "Headers\SphereRenderer.h"
 
 #pragma comment(lib,"DevIL.lib")
 #pragma comment(lib,"ilut.lib")
@@ -34,23 +35,30 @@ void Reshape(int w, int h) {
 //test
 GameObject go = GameObject("Test Cube");
 GameObject anotherGo = GameObject("Another Test Cube");
-BoxRenderer newBR;
+SphereRenderer newBR;
+//---
 
 void Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0, 0, 0, 0);
 	
+	//test
 	go.renderer->Render();
 	newBR.Render();
+	//---
 
 	glutSwapBuffers();
 }
 
 void Idle()
 {
-	go.transform->Rotate(Maths::Quaternion(Maths::Vector3(1,1,0),1));
+	//test
+	std::cout << go.transform->Up().x << ", " << go.transform->Up().y << ", " << go.transform->Up().z << std::endl;
+	anotherGo.transform->Rotate(Maths::Quaternion(anotherGo.transform->Up(), 1));
+	go.transform->Rotate(Maths::Quaternion(go.transform->Forward(), 1));
 	glutPostRedisplay();
+	//---
 }
 
 void Keyboard(unsigned char key, int x, int y)
@@ -84,19 +92,15 @@ int main()
 
 	//test
 	go.SetRenderer(new BoxRenderer(&go, Maths::Vector3(2, 0.3, 0.6)));
-	anotherGo.SetRenderer(new BoxRenderer(&anotherGo, Maths::Vector3(0, 0.3, 0.8)));
-	BoxRenderer *newBRp = (BoxRenderer*)anotherGo.GetComponent("BoxRenderer");
+	anotherGo.SetRenderer(new SphereRenderer(&anotherGo, Maths::Vector3(0.5, 0.7, 1)));
+	SphereRenderer *newBRp = (SphereRenderer*)anotherGo.GetComponent("SphereRenderer");
 
 	newBR = *newBRp;
 	delete newBRp;
 	newBR.gameObject->transform->position = Maths::Vector3(2, 1, 1);
-	newBR.gameObject->transform->rotation = Maths::Quaternion(Maths::Vector3(0, 1, 0), 45);
-	newBR.gameObject->transform->scale = Maths::Vector3(2, 2, 2);
-
-	Maths::Quaternion q1 = Maths::Quaternion(Maths::Vector3(0,1,0), 45);
-	Maths::Quaternion q2 = Maths::Quaternion(Maths::Vector3(0,1,0), 5);
-	Maths::Quaternion q3 = q1 * q2;
-	Maths::Quaternion* q3p = Maths::Quaternion::ToEuler(q3);
+	newBR.gameObject->transform->rotation = Maths::Quaternion(Maths::Vector3(0, 0, 1), 45);
+	newBR.gameObject->transform->scale = Maths::Vector3(3,3,0.5);
+	go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
 	//----
 
 	glutDisplayFunc(Display);

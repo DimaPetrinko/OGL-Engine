@@ -31,6 +31,24 @@ void Transform::Translate(Maths::Vector3 _translation)
 
 void Transform::Rotate(Maths::Quaternion _rotation)
 {
-	rotation = rotation * _rotation;
+	rotation = _rotation * rotation;
+}
+
+Maths::Vector3 Transform::Up()
+{
+	Maths::Vector3 vUp = Maths::Vector3(0, 1, 0);
+	return rotation * vUp;
+}
+
+Maths::Vector3 Transform::Right()
+{
+	Maths::Vector3 vRight = Maths::Vector3(1, 0, 0);
+	return rotation * vRight;
+}
+
+Maths::Vector3 Transform::Forward()
+{
+	Maths::Vector3 vForward = Maths::Vector3(0, 0, 1);
+	return rotation * vForward;
 }
 //-----------------------------------------------------------------------------------------
