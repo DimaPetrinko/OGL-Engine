@@ -49,7 +49,7 @@ void Display()
 
 void Idle()
 {
-	go.transform->Rotate(Maths::Vector3(0,1,1));
+	go.transform->Rotate(Maths::Quaternion(Maths::Vector3(1,1,0),1));
 	glutPostRedisplay();
 }
 
@@ -76,8 +76,6 @@ void Keyboard(unsigned char key, int x, int y)
 	//---
 }
 
-
-
 int main()
 {
 	Window window = Window("Engine", Maths::Vector2(1920, 1080), false);
@@ -92,13 +90,13 @@ int main()
 	newBR = *newBRp;
 	delete newBRp;
 	newBR.gameObject->transform->position = Maths::Vector3(2, 1, 1);
-	newBR.gameObject->transform->rotation = Maths::Vector3(0, 0, 30);
+	newBR.gameObject->transform->rotation = Maths::Quaternion(Maths::Vector3(0, 1, 0), 45);
 	newBR.gameObject->transform->scale = Maths::Vector3(2, 2, 2);
 
-	Maths::Matrix3 mat1 = Maths::Matrix3();
-	Maths::Matrix3 mat2 = Maths::Matrix3();
-	Maths::Matrix3 mat3 = mat1 * mat2;
-
+	Maths::Quaternion q1 = Maths::Quaternion(Maths::Vector3(0,1,0), 45);
+	Maths::Quaternion q2 = Maths::Quaternion(Maths::Vector3(0,1,0), 5);
+	Maths::Quaternion q3 = q1 * q2;
+	Maths::Quaternion* q3p = Maths::Quaternion::ToEuler(q3);
 	//----
 
 	glutDisplayFunc(Display);

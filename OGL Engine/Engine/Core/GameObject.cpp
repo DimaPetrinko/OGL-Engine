@@ -7,11 +7,11 @@
 
 const char *GameObject::defaultName = "NewGameObject";
 
-GameObject::GameObject()// : transform(Transform(this,Transform::Vector3(), Transform::Vector3(), Transform::Vector3()))
+GameObject::GameObject()
 {
 	name = defaultName;
 	enabled = true;
-	transform = new Transform(this, Maths::Vector3(), Maths::Vector3(), Maths::Vector3(1, 1, 1));
+	transform = new Transform(this, Maths::Vector3(), Maths::Quaternion(), Maths::Vector3(1, 1, 1));
 	AddComponent(transform);
 }
 

@@ -32,7 +32,7 @@ int GfxFramework::InitWindow(const char *_title, Maths::Vector2 _resolution, boo
 	return glutCreateWindow(_title);
 }
 
-void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths::Vector3 rotation, Maths::Vector3 scale)
+void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths::Quaternion rotation, Maths::Vector3 scale)
 {
 	glPushMatrix();
 
@@ -40,9 +40,19 @@ void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths
 	glTranslatef(position.x, position.y, position.z);
 
 	//Rotate
-	glRotatef(rotation.x, 1, 0, 0);
-	glRotatef(rotation.y, 0, 1, 0);
-	glRotatef(rotation.z, 0, 0, 1);
+	Maths::Quaternion *q = Maths::Quaternion::ToEuler(rotation);
+	/*std::cout << "w: " << q->w
+		<< ", x: " << q->axis.x
+		<< ", y: " << q->axis.y
+		<< ", z: " << q->axis.z
+		<< std::endl;*/
+	
+	glRotatef(q->w, q->axis.x, q->axis.y, q->axis.z);
+
+	delete(q);
+	/*glRotatef(rotation.y, 0, 1, 0);
+	glRotatef(rotation.x, 1, 0, 0);	
+	glRotatef(rotation.z, 0, 0, 1);*/
 
 	//Scale
 	glScalef(scale.x, scale.y, scale.z);

@@ -1,4 +1,9 @@
 #pragma once
+
+#define PI 3.14159265359
+#define RAD_TO_DEG 180/PI
+#define DEG_TO_RAD PI/180
+
 static class Maths
 {
 public:
@@ -32,6 +37,12 @@ public:
 		static Vector3 right;
 		static Vector3 forward;
 
+		Vector3 operator*(float _f) const;
+
+		Vector3 operator+(const Vector3 &_v) const;
+
+		Vector3 operator-(const Vector3 &_v) const;
+
 		static float GetMagnitude(Vector3 vector);
 
 		float GetMagnitude();
@@ -39,15 +50,24 @@ public:
 		static Vector3 Normilize(Vector3 vector);
 
 		Vector3 Normilize();
+
+		float Dot(const Vector3 &_v) const;
+		Vector3 Cross(const Vector3 &_v) const;
 	};
 
-	struct Matrix3
+	struct Quaternion
 	{
-		float matrixArr[3][3];
+		float w;
+		Vector3 axis;
+		
+		Quaternion(float _w, const Vector3 &_axis);
+		Quaternion();
+		Quaternion(const Vector3 &_axis, float _angle);
 
-		Matrix3();
-		Matrix3(const float *_arr[3][3]);
-		Matrix3 operator* (const Maths::Matrix3 &A);
+		Quaternion operator*(const Quaternion& B) const;
+
+		void ToQuaternion(const Vector3 &_axis, float _angle);
+		static Quaternion *ToEuler(const Quaternion &_q);
 	};
 
 public:

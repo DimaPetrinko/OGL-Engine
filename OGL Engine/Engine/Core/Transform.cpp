@@ -6,11 +6,11 @@ Transform::Transform()
 {
 	name = "Transform";
 	position = Maths::Vector3();
-	rotation = Maths::Vector3();
+	rotation = Maths::Quaternion();
 	scale = Maths::Vector3();
 }
 
-Transform::Transform(const GameObject *_gameobject, Maths::Vector3 _position, Maths::Vector3 _rotation, Maths::Vector3 _scale) : Component(_gameobject)
+Transform::Transform(const GameObject *_gameobject, Maths::Vector3 _position, Maths::Quaternion _rotation, Maths::Vector3 _scale) : Component(_gameobject)
 {
 	name = "Transform";
 	position = _position;
@@ -29,10 +29,8 @@ void Transform::Translate(Maths::Vector3 _translation)
 	position.z += _translation.z;
 }
 
-void Transform::Rotate(Maths::Vector3 _rotation)
+void Transform::Rotate(Maths::Quaternion _rotation)
 {
-	rotation.x += _rotation.x;
-	rotation.y += _rotation.y;
-	rotation.z += _rotation.z;
+	rotation = rotation * _rotation;
 }
 //-----------------------------------------------------------------------------------------
