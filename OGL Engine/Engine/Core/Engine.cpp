@@ -54,9 +54,8 @@ void Display()
 void Idle()
 {
 	//test
-	std::cout << go.transform->Up().x << ", " << go.transform->Up().y << ", " << go.transform->Up().z << std::endl;
 	anotherGo.transform->Rotate(Maths::Quaternion(anotherGo.transform->Up(), 1));
-	go.transform->Rotate(Maths::Quaternion(go.transform->Forward(), 1));
+	go.transform->Rotate(Maths::Quaternion(go.transform->Up(), 1));
 	glutPostRedisplay();
 	//---
 }
@@ -100,7 +99,9 @@ int main()
 	newBR.gameObject->transform->position = Maths::Vector3(2, 1, 1);
 	newBR.gameObject->transform->rotation = Maths::Quaternion(Maths::Vector3(0, 0, 1), 45);
 	newBR.gameObject->transform->scale = Maths::Vector3(3,3,0.5);
+	newBR.drawGizmos = true;
 	go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
+	go.renderer->drawGizmos = true;
 	//----
 
 	glutDisplayFunc(Display);

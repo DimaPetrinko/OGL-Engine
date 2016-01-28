@@ -8,6 +8,7 @@ class Renderer : public Component
 {
 public:
 	Maths::Vector3 color;
+	bool drawGizmos;
 
 public:
 	Renderer();

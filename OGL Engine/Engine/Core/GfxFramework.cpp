@@ -32,6 +32,46 @@ int GfxFramework::InitWindow(const char *_title, Maths::Vector2 _resolution, boo
 	return glutCreateWindow(_title);
 }
 
+void GfxFramework::DrawGizmos(Maths::Vector3 position, Maths::Quaternion rotation, Maths::Vector3 scale)
+{
+	glPushMatrix();
+
+	//Translate
+	glTranslatef(position.x, position.y, position.z);
+
+	//Rotate
+	Maths::Quaternion *q = Maths::Quaternion::ToEuler(rotation);
+	glRotatef(q->w, q->axis.x, q->axis.y, q->axis.z);
+	delete(q);
+
+	//Draw
+	glLineWidth(5);
+
+	glBegin(GL_LINES);
+	glColor3f(1, 0, 0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(scale.x, 0, 0);
+	glEnd();
+
+	glBegin(GL_LINES);
+	glColor3f(0, 1, 0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, scale.y, 0);
+	glEnd();
+
+	glBegin(GL_LINES);
+	glColor3f(0, 0, 1);
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 0, scale.z);
+	glEnd();
+
+	glColor3f(1, 1, 1);
+
+	glLineWidth(1);
+
+	glPopMatrix();
+}
+
 void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths::Quaternion rotation, Maths::Vector3 scale)
 {
 	glPushMatrix();

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Headers\Renderer.h"
+#include "Headers\GfxFramework.h"
 
 Renderer::Renderer() : Component()
 {
@@ -24,5 +25,8 @@ Renderer::~Renderer()
 
 void Renderer::Render() 
 {
-
+	if (drawGizmos)
+	{
+		GfxFramework::DrawGizmos(gameObject->transform->position, gameObject->transform->rotation, gameObject->transform->scale);
+	}
 }
