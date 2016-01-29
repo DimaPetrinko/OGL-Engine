@@ -102,6 +102,8 @@ int main()
 	newBR.drawGizmos = true;
 	go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
 	go.renderer->drawGizmos = true;
+
+	std::cout << go.transform->Up().Dot(anotherGo.transform->Up()) * RAD_TO_DEG << std::endl;
 	//----
 
 	glutDisplayFunc(Display);
