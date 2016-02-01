@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Headers\Camera.h" />
     <ClInclude Include="Core\Headers\BoxRenderer.h" />
     <ClInclude Include="Core\Headers\Component.h" />
     <ClInclude Include="Core\Headers\GameObject.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Core\Headers\SphereRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\BoxRenderer.cpp" />
     <ClCompile Include="Core\Component.cpp" />
     <ClCompile Include="Core\Engine.cpp" />

@@ -129,3 +129,11 @@ void GfxFramework::DrawSphere(Maths::Vector3 color, Maths::Vector3 position, Mat
 
 	glPopMatrix();
 }
+
+void GfxFramework::SetViewport(Maths::Vector3 position, Maths::Quaternion rotation)
+{
+	glTranslatef(-position.x, -position.y, -position.z);
+	Maths::Quaternion *q = Maths::Quaternion::ToEuler(rotation);
+	glRotatef(q->w, -q->axis.x, -q->axis.y, -q->axis.z);
+	delete(q);
+}

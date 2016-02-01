@@ -15,6 +15,7 @@
 #include "Headers\Window.h"
 #include "Headers\BoxRenderer.h"
 #include "Headers\SphereRenderer.h"
+#include "Headers\Camera.h"
 
 #pragma comment(lib,"DevIL.lib")
 #pragma comment(lib,"ilut.lib")
@@ -27,15 +28,17 @@ void Reshape(int w, int h) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45, ratio, 0.1, 100);
-	glTranslated(0, 0, -10);
+	glTranslated(0, 0, 0);
 	//gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0);
 	glMatrixMode(GL_MODELVIEW);	
 }
 
 //test
 GameObject go = GameObject("Test Cube");
+GameObject camera = GameObject("Camera");
 GameObject anotherGo = GameObject("Another Test Cube");
 SphereRenderer newBR;
+Camera* cam;
 //---
 
 void Display()
@@ -44,6 +47,7 @@ void Display()
 	glClearColor(0, 0, 0, 0);
 	
 	//test
+	cam->SetViewport();
 	go.renderer->Render();
 	newBR.Render();
 	//---
@@ -66,16 +70,16 @@ void Keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case'w':
-		glTranslatef(0, -.1, 0);
+		camera.transform->Translate(Maths::Vector3(0, 0, -.05));
 		break;
 	case's':
-		glTranslatef(0, .1, 0);
+		camera.transform->Translate(Maths::Vector3(0, 0, .05));
 		break;
 	case'a':
-		glTranslatef(.1, 0, 0);
+		camera.transform->Translate(Maths::Vector3(-.05, 0, 0));
 		break;
 	case'd':
-		glTranslatef(-.1, 0, 0);
+		camera.transform->Translate(Maths::Vector3(.05, 0, 0));
 		break;
 	default:
 		break;
@@ -93,6 +97,9 @@ int main()
 	go.SetRenderer(new BoxRenderer(&go, Maths::Vector3(2, 0.3, 0.6)));
 	anotherGo.SetRenderer(new SphereRenderer(&anotherGo, Maths::Vector3(0.5, 0.7, 1)));
 	SphereRenderer *newBRp = (SphereRenderer*)anotherGo.GetComponent("SphereRenderer");
+	camera.AddComponent(new Camera(&camera));
+	cam = (Camera*)camera.GetComponent("Camera");
+	camera.transform->rotation = Maths::Quaternion(Maths::Vector3(0, 1, 0), 45);
 
 	newBR = *newBRp;
 	delete newBRp;
@@ -102,8 +109,6 @@ int main()
 	newBR.drawGizmos = true;
 	go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
 	go.renderer->drawGizmos = true;
-
-	std::cout << go.transform->Up().Dot(anotherGo.transform->Up()) * RAD_TO_DEG << std::endl;
 	//----
 
 	glutDisplayFunc(Display);

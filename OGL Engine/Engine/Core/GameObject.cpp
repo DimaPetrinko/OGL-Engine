@@ -53,4 +53,5 @@ Component *GameObject::GetComponent(const char *_name)
 			return c;
 		}
 	}
+	std::cout << "There are no such component as " << _name << std::endl;
 }
