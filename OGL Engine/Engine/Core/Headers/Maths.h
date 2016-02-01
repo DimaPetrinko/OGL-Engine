@@ -69,6 +69,7 @@ public:
 
 		void ToQuaternion(const Vector3 &_axis, float _angle);
 		static Quaternion *ToEuler(const Quaternion &_q);
+		static Quaternion Inverse(const Quaternion &_q);
 	};
 
 public:

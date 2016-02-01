@@ -130,7 +130,18 @@ void GfxFramework::DrawSphere(Maths::Vector3 color, Maths::Vector3 position, Mat
 	glPopMatrix();
 }
 
-void GfxFramework::SetViewport(Maths::Vector3 position, Maths::Quaternion rotation)
+void GfxFramework::SetViewport(int _w, int _h, int _fov)
+{
+	if (_h == 0) _h = 1;
+	float ratio = _w / (float)_h;
+	glViewport(0, 0, _w, _h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(_fov, ratio, 0.1, 100);
+	glMatrixMode(GL_MODELVIEW);
+}
+
+void GfxFramework::Show(Maths::Vector3 position, Maths::Quaternion rotation)
 {
 	glTranslatef(-position.x, -position.y, -position.z);
 	Maths::Quaternion *q = Maths::Quaternion::ToEuler(rotation);

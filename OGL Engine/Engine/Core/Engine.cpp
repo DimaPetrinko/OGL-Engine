@@ -21,16 +21,11 @@
 #pragma comment(lib,"ilut.lib")
 #pragma comment(lib,"ilu.lib")
 
-void Reshape(int w, int h) {
-	if (h == 0) h = 1;
-	float ratio = w / (float)h;
-	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45, ratio, 0.1, 100);
-	glTranslated(0, 0, 0);
-	//gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0);
-	glMatrixMode(GL_MODELVIEW);	
+Camera* cam;
+
+void Reshape(int w, int h) 
+{
+	cam->SetViewport(w, h);
 }
 
 //test
@@ -38,7 +33,6 @@ GameObject go = GameObject("Test Cube");
 GameObject camera = GameObject("Camera");
 GameObject anotherGo = GameObject("Another Test Cube");
 SphereRenderer newBR;
-Camera* cam;
 //---
 
 void Display()
@@ -47,7 +41,7 @@ void Display()
 	glClearColor(0, 0, 0, 0);
 	
 	//test
-	cam->SetViewport();
+	cam->Show();
 	go.renderer->Render();
 	newBR.Render();
 	//---
@@ -70,16 +64,22 @@ void Keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case'w':
-		camera.transform->Translate(Maths::Vector3(0, 0, -.05));
+		camera.transform->Translate(camera.transform->Forward() * -0.05);
 		break;
 	case's':
-		camera.transform->Translate(Maths::Vector3(0, 0, .05));
+		camera.transform->Translate(camera.transform->Forward() * 0.05);
 		break;
 	case'a':
-		camera.transform->Translate(Maths::Vector3(-.05, 0, 0));
+		camera.transform->Translate(camera.transform->Right() * -0.05);
 		break;
 	case'd':
-		camera.transform->Translate(Maths::Vector3(.05, 0, 0));
+		camera.transform->Translate(camera.transform->Right() * 0.05);
+		break;
+	case'y':
+		camera.transform->Translate(camera.transform->Up() * 0.05);
+		break;
+	case'h':
+		camera.transform->Translate(camera.transform->Up() * -0.05);
 		break;
 	default:
 		break;
@@ -90,27 +90,29 @@ void Keyboard(unsigned char key, int x, int y)
 int main()
 {
 	Window window = Window("Engine", Maths::Vector2(1920, 1080), false);
-	glutIdleFunc(Idle);
 	//DevILInit();
 
 	//test
 	go.SetRenderer(new BoxRenderer(&go, Maths::Vector3(2, 0.3, 0.6)));
+	//go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
+	go.renderer->drawGizmos = true;
+
 	anotherGo.SetRenderer(new SphereRenderer(&anotherGo, Maths::Vector3(0.5, 0.7, 1)));
 	SphereRenderer *newBRp = (SphereRenderer*)anotherGo.GetComponent("SphereRenderer");
-	camera.AddComponent(new Camera(&camera));
-	cam = (Camera*)camera.GetComponent("Camera");
-	camera.transform->rotation = Maths::Quaternion(Maths::Vector3(0, 1, 0), 45);
-
 	newBR = *newBRp;
 	delete newBRp;
 	newBR.gameObject->transform->position = Maths::Vector3(2, 1, 1);
 	newBR.gameObject->transform->rotation = Maths::Quaternion(Maths::Vector3(0, 0, 1), 45);
 	newBR.gameObject->transform->scale = Maths::Vector3(3,3,0.5);
 	newBR.drawGizmos = true;
-	go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
-	go.renderer->drawGizmos = true;
-	//----
 
+	camera.AddComponent(new Camera(&camera,45));
+	cam = (Camera*)camera.GetComponent("Camera");
+	camera.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
+	camera.transform->position = Maths::Vector3(0, 0, 2);	
+	//----
+	
+	glutIdleFunc(Idle);
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutKeyboardFunc(Keyboard);

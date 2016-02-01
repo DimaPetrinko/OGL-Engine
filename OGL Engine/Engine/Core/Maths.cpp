@@ -157,43 +157,14 @@ Maths::Quaternion *Maths::Quaternion::ToEuler(const Maths::Quaternion &_q)
 	}
 	return _qp;
 }
-//-----------------------------------------------------------------------------------------
 
-//Matrix3----------------------------------------------------------------------------------
-//Maths::Matrix3::Matrix3(const float _arr[3][3])
-//{
-//	for (int i = 0; i < 3; i++)
-//	{
-//		for (int j = 0; j < 3; j++)
-//		{
-//			matrixArr[i][j] = _arr[i][j];
-//		}
-//	}
-//}
-//
-//Maths::Matrix3::Matrix3()
-//{
-//	float *_arr[3][3] = 
-//	{
-//		{0,0,0},
-//		{0,0,0},
-//		{0,0,0}	
-//	};
-//	//Maths::Matrix3::Matrix3(_arr);
-//}
-//
-//Maths::Matrix3 Maths::Matrix3::operator* (const Matrix3 &A)
-//{
-//	Matrix3 _mat = Matrix3();
-//	for (int i = 0; i < 3; i++)
-//	{
-//		for (int j = 0; j < 3; j++)
-//		{
-//			_mat.matrixArr[i][j] = A.matrixArr[i][j];
-//		}
-//	}
-//	return _mat;
-//}
+Maths::Quaternion Maths::Quaternion::Inverse(const Quaternion &_q)
+{
+	Quaternion _qp = Quaternion();
+	_qp.w = _q.w;
+	_qp.axis = _q.axis * -1;
+	return _qp;
+}
 //-----------------------------------------------------------------------------------------
 
 Maths::Maths()
