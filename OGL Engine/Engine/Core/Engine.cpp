@@ -16,6 +16,7 @@
 #include "Headers\BoxRenderer.h"
 #include "Headers\SphereRenderer.h"
 #include "Headers\Camera.h"
+#include "Headers\Time.h"
 
 #pragma comment(lib,"DevIL.lib")
 #pragma comment(lib,"ilut.lib")
@@ -45,6 +46,9 @@ void Display()
 	go.renderer->Render();
 	newBR.Render();
 	//---
+	
+	Time::UpdateDeltaTime();
+	std::cout << Time::deltaTime << std::endl;
 
 	glutSwapBuffers();
 }
@@ -52,8 +56,8 @@ void Display()
 void Idle()
 {
 	//test
-	anotherGo.transform->Rotate(Maths::Quaternion(anotherGo.transform->Up(), 1));
-	go.transform->Rotate(Maths::Quaternion(go.transform->Up(), 1));
+	anotherGo.transform->Rotate(Maths::Quaternion(anotherGo.transform->Up(), 60 * Time::deltaTime));
+	go.transform->Rotate(Maths::Quaternion(go.transform->Up(), 60 * Time::deltaTime));
 	glutPostRedisplay();
 	//---
 }
@@ -64,22 +68,22 @@ void Keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case'w':
-		camera.transform->Translate(camera.transform->Forward() * -0.05);
+		camera.transform->Translate(camera.transform->Forward() * -10 * Time::deltaTime);
 		break;
 	case's':
-		camera.transform->Translate(camera.transform->Forward() * 0.05);
+		camera.transform->Translate(camera.transform->Forward() * 10 * Time::deltaTime);
 		break;
 	case'a':
-		camera.transform->Translate(camera.transform->Right() * -0.05);
+		camera.transform->Translate(camera.transform->Right() * -10 * Time::deltaTime);
 		break;
 	case'd':
-		camera.transform->Translate(camera.transform->Right() * 0.05);
+		camera.transform->Translate(camera.transform->Right() * 10 * Time::deltaTime);
 		break;
-	case'y':
-		camera.transform->Translate(camera.transform->Up() * 0.05);
+	case'e':
+		camera.transform->Translate(camera.transform->Up() * 10 * Time::deltaTime);
 		break;
-	case'h':
-		camera.transform->Translate(camera.transform->Up() * -0.05);
+	case'q':
+		camera.transform->Translate(camera.transform->Up() * -10 * Time::deltaTime);
 		break;
 	default:
 		break;
@@ -89,7 +93,7 @@ void Keyboard(unsigned char key, int x, int y)
 
 int main()
 {
-	Window window = Window("Engine", Maths::Vector2(1920, 1080), false);
+	Window window = Window("Engine", Maths::Vector2(1366, 768), false);
 	//DevILInit();
 
 	//test

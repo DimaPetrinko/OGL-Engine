@@ -157,6 +157,7 @@
     <ClInclude Include="Core\Headers\Window.h" />
     <ClInclude Include="Core\Headers\Maths.h" />
     <ClInclude Include="Core\Headers\SphereRenderer.h" />
+    <ClInclude Include="Core\Headers\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Camera.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Core\Maths.cpp" />
     <ClCompile Include="Core\SphereRenderer.cpp" />
+    <ClCompile Include="Core\Time.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
