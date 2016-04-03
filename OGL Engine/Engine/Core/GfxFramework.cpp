@@ -106,7 +106,7 @@ void GfxFramework::DrawCube(Maths::Vector3 color, Maths::Vector3 position, Maths
 	glPopMatrix();
 }
 
-void GfxFramework::DrawSphere(Maths::Vector3 color, Maths::Vector3 position, Maths::Quaternion rotation, Maths::Vector3 scale)
+void GfxFramework::DrawSphere(Maths::Vector3 color, Maths::Vector3 position, Maths::Quaternion rotation, Maths::Vector3 scale, bool lit)
 {
 	glPushMatrix();
 
@@ -125,8 +125,9 @@ void GfxFramework::DrawSphere(Maths::Vector3 color, Maths::Vector3 position, Mat
 	glColor3f(color.x, color.y, color.z);
 
 	//Draw
+	if (!lit) glDisable(GL_LIGHTING);
 	glutSolidSphere(0.5, scale.x * 10, scale.y * 10);
-
+	if (!lit) glEnable(GL_LIGHTING);
 	glPopMatrix();
 }
 

@@ -27,6 +27,6 @@ void SphereRenderer::Render()
 	if (gameObject->enabled && enabled)
 	{
 		Renderer::Render();
-		GfxFramework::DrawSphere(color, gameObject->transform->position, gameObject->transform->rotation, gameObject->transform->scale);
+		GfxFramework::DrawSphere(color, gameObject->transform->position, gameObject->transform->rotation, gameObject->transform->scale, lit);
 	}
 }

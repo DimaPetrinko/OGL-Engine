@@ -24,13 +24,15 @@
 
 Camera* cam;
 
-void Reshape(int w, int h) 
+void Reshape(int w, int h)
 {
 	cam->SetViewport(w, h);
 }
 
 //test
 GameObject go = GameObject("Test Cube");
+GameObject skySphere = GameObject("Sky Sphere");
+GameObject floorGO = GameObject("Floor");
 GameObject camera = GameObject("Camera");
 GameObject anotherGo = GameObject("Another Test Cube");
 SphereRenderer newBR;
@@ -40,13 +42,15 @@ void Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0, 0, 0, 0);
-	
+
 	//test
 	cam->Show();
 	go.renderer->Render();
+	skySphere.renderer->Render();
+	floorGO.renderer->Render();
 	newBR.Render();
 	//---
-	
+
 	Time::UpdateDeltaTime();
 	std::cout << Time::deltaTime << std::endl;
 
@@ -101,21 +105,30 @@ int main()
 	//go.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
 	go.renderer->drawGizmos = true;
 
+	skySphere.SetRenderer(new SphereRenderer(&skySphere, Maths::Vector3(180 / 256.0f, 210 / 256.0f, 244 / 256.0f)));
+	skySphere.renderer->lit = false;
+	skySphere.transform->position = Maths::Vector3(0, 0, 0);
+	skySphere.transform->scale = Maths::Vector3(100, 100, 100);
+
+	floorGO.SetRenderer(new BoxRenderer(&floorGO, Maths::Vector3(1, 1, 1)));
+	floorGO.transform->position = Maths::Vector3(0, -1, 0);
+	floorGO.transform->scale = Maths::Vector3(10, 0.1, 10);
+
 	anotherGo.SetRenderer(new SphereRenderer(&anotherGo, Maths::Vector3(0.5, 0.7, 1)));
 	SphereRenderer *newBRp = (SphereRenderer*)anotherGo.GetComponent("SphereRenderer");
 	newBR = *newBRp;
 	delete newBRp;
 	newBR.gameObject->transform->position = Maths::Vector3(2, 1, 1);
 	newBR.gameObject->transform->rotation = Maths::Quaternion(Maths::Vector3(0, 0, 1), 45);
-	newBR.gameObject->transform->scale = Maths::Vector3(3,3,0.5);
+	newBR.gameObject->transform->scale = Maths::Vector3(3, 3, 0.5);
 	newBR.drawGizmos = true;
 
-	camera.AddComponent(new Camera(&camera,45));
+	camera.AddComponent(new Camera(&camera, 45));
 	cam = (Camera*)camera.GetComponent("Camera");
-	camera.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
-	camera.transform->position = Maths::Vector3(0, 0, 2);	
+	//camera.transform->rotation = Maths::Quaternion(Maths::Vector3(1, 0, 0), 30);
+	camera.transform->position = Maths::Vector3(0, 0, 2);
 	//----
-	
+
 	glutIdleFunc(Idle);
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);

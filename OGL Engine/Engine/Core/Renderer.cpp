@@ -16,6 +16,7 @@ Renderer::Renderer(GameObject* _gameObject) : Component(_gameObject)
 	color.x = 0.8;
 	color.y = 0.8;
 	color.z = 0.8;
+	lit = true;
 }
 
 Renderer::~Renderer() 
